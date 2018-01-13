@@ -8,7 +8,8 @@ path = require('path'),
 cors = require('cors'),
 bodyParser = require('body-parser'),
 server = express(),
-apiRoutes = require('./routes/api');
+apiRoutes = require('./routes/api'),
+authRoutes = require('./routes/auth');
 
 server.use(cors());
 server.use(bodyParser.json());
@@ -20,5 +21,6 @@ server.get('/', (req, res) => {
 });
 
 server.use('/api', apiRoutes);
+server.use('/auth', authRoutes);
 
 server.listen(port, () => console.log(`Server started on port ${port}`));

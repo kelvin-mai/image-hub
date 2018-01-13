@@ -3,22 +3,21 @@ db = require('../models');
 
 router.route('/')
   .get((req, res) => {
-     res.json([{id: 1, name: 'dude'}, {id:2, name: 'bro'}]);
-   })
-   .post((req, res) => {
-     res.json({test: true});
+     db.User.find().remove().exec().then(() => res.send('cleared'));
    });
 
 router.route('/users')
   .get((req, res) => {
     db.User.find()
-    .then(users => res.json(users))
+    .then(users => res.status(200).json(users))
     .catch(err => res.send(err));
   })
   .post((req, res) => {
     db.User.create(req.body)
       .then(user => res.status(201).json(user))
-      .catch(err => res.send(err));
+      .catch(err => res.status(400).json(err));
   });
+
+
 
 module.exports = router;

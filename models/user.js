@@ -1,5 +1,6 @@
 const mongoose = require('mongoose'),
-shortid = require('shortid');
+shortid = require('shortid'),
+bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   _id: {
@@ -8,7 +9,8 @@ const userSchema = new mongoose.Schema({
   },
   username: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   password: {
     type: String,
@@ -20,6 +22,20 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-const User = mongoose.model('User', userSchema);
+userSchema.pre('save', function(next){
+  let user = this;
+  if (!user.isModified('password')) return next();
+  bcrypt.hash(user.password, 10).then(hash =>  {
+      user.password = hash;
+      next();
+  }, err => next(err));
+});
 
-module.exports = User;
+userSchema.methods.comparePassword = function(attempt, next) {
+  bcrypt.compare(attempt, this.password, (err, match) => {
+    if(err) return next(err);
+    next(null, match);
+  });
+};
+
+module.exports = mongoose.model('User', userSchema);

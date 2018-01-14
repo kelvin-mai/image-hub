@@ -7,7 +7,7 @@ router.post('/login', (req, res) => {
     user.comparePassword(req.body.password, (err, match) => {
       if (match) {
         let token = jwt.sign(
-          { username: user.username}, process.env.SECRET_KEY
+          { id: user._id}, process.env.SECRET_KEY
         );
         res.status(200).json({uid: user.id, username: user.username, token});
       } else {

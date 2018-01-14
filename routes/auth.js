@@ -2,7 +2,7 @@ const router = require('express').Router(),
 db = require('../models'),
 jwt = require('jsonwebtoken');
 
-router.post('/signin', (req, res) => {
+router.post('/login', (req, res) => {
   db.User.findOne({username: req.body.username}).then(user => {
     user.comparePassword(req.body.password, (err, match) => {
       if (match) {
@@ -20,7 +20,7 @@ router.post('/signin', (req, res) => {
 });
 
 
-router.post('/signup', (req, res) => {
+router.post('/register', (req, res) => {
   db.User.create(req.body).then(user => {
     let token = jwt.sign(
       {username: user.username}, process.env.SECRET_KEY

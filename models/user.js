@@ -1,12 +1,8 @@
 const mongoose = require('mongoose'),
-shortid = require('shortid'),
 bcrypt = require('bcryptjs');
 
+
 const userSchema = new mongoose.Schema({
-  _id: {
-    type: String,
-    default: shortid.generate
-  },
   username: {
     type: String,
     required: true,
@@ -19,7 +15,11 @@ const userSchema = new mongoose.Schema({
   created_at: {
     type: Date,
     default: Date.now
-  }
+  },
+  posts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Post'
+  }]
 });
 
 userSchema.pre('save', function(next){

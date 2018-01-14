@@ -4,8 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "serve": "nodemon server.js",
+    "styles": "postcss ./src/css/style.css -o ./public/style.css",
+    "compile": "npm run styles && webpack"
   },
   "keywords": [],
   "author": "",
@@ -21,11 +22,17 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
+    "autoprefixer": "^7.2.5",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "dotenv": "^4.0.0",
+    "postcss-cli": "^4.1.1",
+    "postcss-custom-media": "^6.0.0",
+    "postcss-custom-properties": "^6.2.0",
+    "postcss-import": "^11.0.0",
+    "postcss-nested": "^3.0.0",
     "webpack": "^3.10.0"
   }
 }

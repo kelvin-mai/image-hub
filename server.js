@@ -16,11 +16,11 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended:true}));
 server.use(express.static(path.join(__dirname, 'public')));
 
+server.use('/api', apiRoutes);
+server.use('/auth', authRoutes);
+
 server.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, './views/index.html'));
 });
-
-server.use('/api', apiRoutes);
-server.use('/auth', authRoutes);
 
 server.listen(port, () => console.log(`Server started on port ${port}`));

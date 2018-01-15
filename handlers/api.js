@@ -2,6 +2,7 @@ const db = require('../models');
 
 module.exports.allUsers = (req, res) => {
   db.User.find()
+    .populate('posts', {image: true, caption: true})
     .then(users => res.status(200).json(users))
     .catch(err => res.status(400).json(err));
 };
@@ -14,16 +15,22 @@ module.exports.allPosts = (req, res) => {
 };
 
 module.exports.getUser = (req, res) => {
-  db.User.findById(req.params.uid)
-    .populate('posts', {image: true})
-    .then(user => res.status(200).json(user))
+  db.User.findOne({username: req.params.username})
+    .populate('posts', {image: true, caption: true})
+    .then(user => {
+      if (user) return user;
+      res.status(400).json({message: 'User does not exist'});
+    }).then(user => res.status(200).json(user))
     .catch(err => res.status(400).json(err));
 };
 
 module.exports.getUserPosts = (req, res, next) => {
-  db.User.findById(req.params.uid)
-    .populate("posts", {image: true})
-    .then(user => res.status(200).json(user.posts))
+  db.User.findOne({username: req.params.username})
+    .populate('posts', {image: true, caption: true})
+    .then(user => {
+      if (user) return user;
+      res.status(400).json({message: 'User does not exist'});
+    }).then(user => res.status(200).json(user.posts))
     .catch(next);
 };
 
@@ -35,13 +42,13 @@ module.exports.getPost = (req, res, next) => {
 };
 
 module.exports.createPost = (req, res, next) => {
-  db.Post.create({
-    image: req.body.image,
-    uid: req.params.uid
-  })
-    .then(post => {
-    db.User.findById(req.params.uid)
-      .then(user => {
+  db.User.findOne({username: req.params.username})
+    .then(user => {
+      db.Post.create({
+        image: req.body.image,
+        caption: req.body.caption,
+        uid: user.id
+      }).then(post => {
         user.posts.push(post._id);
         user.save().then(user => {
           return db.Post.findById(post._id)
@@ -49,14 +56,15 @@ module.exports.createPost = (req, res, next) => {
         }).then(m => {
           return res.status(200).json(m);
         }).catch(next);
+      }).catch(next);
     }).catch(next);
-  }).catch(next);
 };
 
 module.exports.updatePost = (req, res, next) => {
   db.Post.findById(req.params.pid)
     .then(post => post.update({
-      image: req.body.image
+      image: req.body.image,
+      caption: req.body.caption
     }))
     .then(res.status(200).json({message: 'updated post'}))
     .catch(next);

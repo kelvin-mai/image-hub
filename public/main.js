@@ -977,12 +977,7 @@ var App = function (_Component) {
       return _react2.default.createElement(
         "div",
         null,
-        _react2.default.createElement(
-          "h1",
-          null,
-          "Test"
-        ),
-        _react2.default.createElement(_Loading2.default, { className: "loader" })
+        _react2.default.createElement(_Loading2.default, null)
       );
     }
   }]);
@@ -18318,7 +18313,16 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Loading = function Loading() {
-  return _react2.default.createElement("div", { className: "loader" });
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement("div", { className: "Loader" }),
+    _react2.default.createElement(
+      "p",
+      { className: "Loader-text" },
+      "loading..."
+    )
+  );
 };
 
 exports.default = Loading;

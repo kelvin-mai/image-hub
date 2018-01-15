@@ -2,29 +2,24 @@
   0% {
     transform: rotate(0deg) scale(1);
   }
-  25% {
-    border-top-color: #3498db;
-    border-bottom-color: #1abc9c;
-  }
   50% {
     transform: rotate(180deg) scale(0.8);
-    border-top-color: #bdc3c7;
-    border-bottom-color: #bdc3c7;
-  }
-  75% {
-    border-top-color: #3498db;
-    border-bottom-color: #1abc9c;
   }
   100% {
     transform: rotate(360deg) scale(1);
   }
 }
 
-.loader {
+.Loader {
   margin: auto;
   border: 16px solid #bdc3c7;
+  border-top-color: #3498db;
   width: 120px;
   height: 120px;
   border-radius: 50%;
   animation: spincolor 3s infinite linear;
+
+  &-text {
+    text-align: center;
+  }
 }

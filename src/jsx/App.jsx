@@ -1,35 +1,41 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Auth from './Auth.jsx';
 import Loading from './Loading.jsx';
-import Post from './Post.jsx';
+import Feed from './Feed.jsx';
 
 export default class App extends Component {
   constructor(){
     super();
     this.state = {
       loading: true,
-      posts: []
+      authenticated: false,
+      user: null
+    }
+    this.handleAuth = this.handleAuth.bind(this);
+  }
+  handleAuth(){
+    if (localStorage.user) {
+      const user = JSON.parse(localStorage.user);
+      this.setState({authenticated: true, user});
+    } else {
+      this.setState({authenticated: false, user: null});
     }
   }
 
-  componentDidMount(){
-    fetch('/api/posts')
-      .then(res => res.json())
-      .then(posts => {
-        console.log(posts)
-        this.setState({loading: false, posts})
-      }).catch(err => console.log(err));
+  componentWillMount(){
+    this.handleAuth();
   }
 
   render() {
-
-    const post = this.state.posts.map((post, i) =>
-          <Post key={i} post={post} />
-        );
-
     return (
       <div>
+        <Auth
+          authenticated={this.state.authenticated}
+          onAuth={this.handleAuth}
+        />
         {this.state.loading ? <Loading /> : ''}
-        {post}
+        <Feed />
       </div>
     );
   }

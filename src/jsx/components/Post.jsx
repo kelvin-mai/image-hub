@@ -5,7 +5,11 @@ const Post = ({post}) => {
     <li>
       <img src={post.image} />
       <p>{post.caption}</p>
-      <p>{post.uid.username}</p>
+      {
+        post.uid
+        ? <p>{post.uid.username}</p>
+        : ''
+      }
     </li>
   );
 }

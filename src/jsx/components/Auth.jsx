@@ -6,6 +6,7 @@ export default class Auth extends Component{
     this.state = {
       username: '',
       password: '',
+      error: ''
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleAuth = this.handleAuth.bind(this);
@@ -16,6 +17,7 @@ export default class Auth extends Component{
   }
   handleAuth(e){
     e.preventDefault();
+    this.setState({error: ''});
     const {username, password} = this.state;
     const {authenticated} = this.props;
     if (!authenticated){
@@ -26,10 +28,13 @@ export default class Auth extends Component{
         headers: new Headers({'Content-Type':'application/json'})
       }).then(res => res.json())
       .then(user => {
+        if (user.message) return Promise.reject(user);
         localStorage.user = JSON.stringify(user);
         this.props.onAuth();
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        this.setState({error: err.message});
+      });
     } else {
       localStorage.clear();
       this.props.onAuth();
@@ -37,7 +42,7 @@ export default class Auth extends Component{
   }
 
   render(){
-    const {username, password} = this.state;
+    const {username, password, error} = this.state;
     const {authenticated} = this.props;
     const login =
       <form onSubmit={this.handleAuth}>
@@ -64,6 +69,7 @@ export default class Auth extends Component{
     return (
       <div>
         {!authenticated ? login : logout}
+        {error}
       </div>
     );
   }

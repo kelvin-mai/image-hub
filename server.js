@@ -19,7 +19,7 @@ server.use(express.static(path.join(__dirname, 'public')));
 server.use('/api', apiRoutes);
 server.use('/auth', authRoutes);
 
-server.get('/', (req, res) => {
+server.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './views/index.html'));
 });
 

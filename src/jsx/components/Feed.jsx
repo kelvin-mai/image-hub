@@ -9,11 +9,10 @@ export default class Feed extends Component {
     }
   }
 
-  componentDidMount(){
-    fetch('/api/posts')
+  componentWillMount(){
+    fetch(this.props.url)
       .then(res => res.json())
       .then(posts => {
-        console.log(posts)
         this.setState({posts})
       }).catch(err => console.log(err));
   }

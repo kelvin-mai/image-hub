@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "serve": "nodemon server.js",
-    "styles": "postcss ./src/css/style.css -o ./public/style.css",
-    "compile": "npm run styles && webpack"
+    "styles": "postcss ./src/style.css -o ./public/style.css",
+    "compile": "npm run styles && webpack",
+    "dev": "nodemon -e css -e jsx -i 'public/' -x 'npm run compile'"
   },
   "keywords": [],
   "author": "",

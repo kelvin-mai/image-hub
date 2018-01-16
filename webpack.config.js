@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const config = {
-  entry: './src/App.jsx',
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'main.js'

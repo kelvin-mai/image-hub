@@ -1,0 +1,13 @@
+.Loader {
+  margin: auto;
+  border: 0.5rem solid #bdc3c7;
+  border-top-color: #3498db;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  animation: spin 1.5s infinite linear;
+
+  &-text {
+    text-align: center;
+  }
+}

@@ -1,4 +1,4 @@
-@-webkit-keyframes spincolor {
+@-webkit-keyframes spin {
   0% {
     -webkit-transform: rotate(0deg) scale(1);
             transform: rotate(0deg) scale(1);
@@ -12,8 +12,7 @@
             transform: rotate(360deg) scale(1);
   }
 }
-
-@keyframes spincolor {
+@keyframes spin {
   0% {
     -webkit-transform: rotate(0deg) scale(1);
             transform: rotate(0deg) scale(1);
@@ -27,18 +26,16 @@
             transform: rotate(360deg) scale(1);
   }
 }
-
 .Loader {
   margin: auto;
-  border: 16px solid #bdc3c7;
+  border: 0.5rem solid #bdc3c7;
   border-top-color: #3498db;
-  width: 120px;
-  height: 120px;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
-  -webkit-animation: spincolor 3s infinite linear;
-          animation: spincolor 3s infinite linear;
+  -webkit-animation: spin 1.5s infinite linear;
+          animation: spin 1.5s infinite linear;
 }
-
 .Loader-text {
     text-align: center;
   }

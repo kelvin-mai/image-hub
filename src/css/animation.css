@@ -1,4 +1,4 @@
-@keyframes spincolor {
+@keyframes spin {
   0% {
     transform: rotate(0deg) scale(1);
   }
@@ -7,19 +7,5 @@
   }
   100% {
     transform: rotate(360deg) scale(1);
-  }
-}
-
-.Loader {
-  margin: auto;
-  border: 16px solid #bdc3c7;
-  border-top-color: #3498db;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  animation: spincolor 3s infinite linear;
-
-  &-text {
-    text-align: center;
   }
 }

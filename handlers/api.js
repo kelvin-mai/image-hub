@@ -1,14 +1,14 @@
 const db = require('../models');
 
 module.exports.allUsers = (req, res) => {
-  db.User.find()
+  db.User.find().sort({created_at: 'desc'})
     .populate('posts', {image: true, caption: true})
     .then(users => res.status(200).json(users))
     .catch(err => res.status(400).json(err));
 };
 
 module.exports.allPosts = (req, res) => {
-  db.Post.find()
+  db.Post.find().sort({created_at: 'desc'})
     .populate('uid', {username: true})
     .then(posts => res.status(200).json(posts))
     .catch(err => res.status(400).json(err));

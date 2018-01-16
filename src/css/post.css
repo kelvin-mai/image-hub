@@ -1,0 +1,28 @@
+.Feed {
+  column-count: 1;
+  column-gap: 0;
+  
+  @media(--tablet){
+    column-count: 2;
+  }
+  @media(--laptop){
+    column-count: 3;
+  }
+  @media(--desktop){
+    column-count: 4;
+  }
+}
+.Post {
+  break-inside: avoid;
+  padding: 0.4rem;
+  list-style: none;
+
+  & img {
+    width: 100%;
+  }
+
+  &-content {
+    border-radius: 0.6rem;
+    padding: 0.6rem;
+  }
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 export default class CreatePost extends Component {
   constructor(props){
@@ -32,14 +33,15 @@ export default class CreatePost extends Component {
     }).then(res => res.json())
     .then(resp => {
       if (resp.message) return Promise.reject(resp);
+      this.forceUpdate();
     }).catch(err => {
-      console.log(err);
       this.setState({error: err.message});
     });
   }
 
   render(){
-    const {image, caption, error} = this.state;
+    const {image, caption, error, redirect} = this.state;
+
     const createPost =
       <form onSubmit={this.handleCreate}>
         <input

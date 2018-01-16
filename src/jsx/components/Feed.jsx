@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import Post from './Post.jsx';
 
 export default class Feed extends Component {
   constructor(props){
     super(props);
     this.state = {
-      posts: []
+      posts: [],
+      error: false
     }
   }
 
@@ -14,15 +16,16 @@ export default class Feed extends Component {
       .then(res => res.json())
       .then(posts => {
         this.setState({posts})
-      }).catch(err => console.log(err));
+      }).catch(err => this.setState({error: true}));
   }
 
   render(){
+    if (this.state.error) return <Redirect to='/error' />
     const posts = this.state.posts.map((post, i) =>
           <Post key={i} post={post} />
         );
     return (
-      <ul>{posts}</ul>
+      <ul className='Feed'>{posts}</ul>
     )
   }
 }

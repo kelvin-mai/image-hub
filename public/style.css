@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+/* mobile first */
+* {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+body {
+  background-color: #4c4c4c;
+}
+.container {
+  margin: auto;
+  padding: 1rem;
+  width: 80%;
+}
 @-webkit-keyframes spin {
   0% {
     -webkit-transform: rotate(0deg) scale(1);
@@ -39,3 +53,78 @@
 .Loader-text {
     text-align: center;
   }
+.Navbar {
+  background-color: black;
+}
+.Navbar-text {
+    text-align: right;
+    display: inline-block;
+    width: 50%;
+  }
+.Navbar-logo {
+    text-align: left;
+    display: inline-block;
+    width: 50%;
+    font-size: 1.2rem;
+    color: white;
+  }
+.Navbar-logo-em {
+      background-color: #FFA500;
+      color: black;
+      padding: 0.2rem;
+      font-size: 1.2rem;
+      border-radius: 0.5rem;
+      margin-left: 0.2rem;
+    }
+.Navbar-link {
+    text-decoration: none;
+    color: #FFA500;
+    padding: 1rem;
+  }
+.Navbar-link_active {
+    cursor: default;
+    color: #4c4c4c;
+  }
+.Feed {
+  -webkit-column-count: 1;
+          column-count: 1;
+  -webkit-column-gap: 0;
+          column-gap: 0;
+}
+@media(min-width: 430px){
+.Feed {
+    -webkit-column-count: 2;
+            column-count: 2
+}
+  }
+@media(min-width: 800px){
+.Feed {
+    -webkit-column-count: 3;
+            column-count: 3
+}
+  }
+@media(min-width: 1025px){
+.Feed {
+    -webkit-column-count: 4;
+            column-count: 4
+}
+  }
+.Post {
+  -webkit-column-break-inside: avoid;
+          break-inside: avoid;
+  padding: 0.4rem;
+  list-style: none;
+}
+.Post img {
+    width: 100%;
+  }
+.Post-content {
+    border-radius: 0.6rem;
+    padding: 0.6rem;
+  }
+.Error {
+  text-align: center;
+  margin-top: 4rem;
+  font-size: 2em;
+  color: #FFA500;
+}

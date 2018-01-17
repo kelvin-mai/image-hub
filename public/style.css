@@ -10,8 +10,18 @@ body {
 .container {
   margin: auto;
   padding: 1rem;
-  width: 80%;
+  width: 100%;
 }
+@media(min-width: 430px){
+.container {
+    width: 90%
+}
+  }
+@media(min-width: 800px){
+.container {
+    width: 80%
+}
+  }
 @-webkit-keyframes spin {
   0% {
     -webkit-transform: rotate(0deg) scale(1);
@@ -40,19 +50,38 @@ body {
             transform: rotate(360deg) scale(1);
   }
 }
-.Loader {
-  margin: auto;
-  border: 0.5rem solid #bdc3c7;
-  border-top-color: #3498db;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  -webkit-animation: spin 1.5s infinite linear;
-          animation: spin 1.5s infinite linear;
-}
-.Loader-text {
-    text-align: center;
+@-webkit-keyframes slideUp{
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(5rem);
+            transform: translateY(5rem);
   }
+  80% {
+    -webkit-transform: translateY(-0.4rem);
+            transform: translateY(-0.4rem);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@keyframes slideUp{
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(5rem);
+            transform: translateY(5rem);
+  }
+  80% {
+    -webkit-transform: translateY(-0.4rem);
+            transform: translateY(-0.4rem);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
 .Navbar {
   background-color: black;
 }
@@ -96,8 +125,9 @@ body {
     font-size: 1.2rem;
     color: white;
     display: none;
+    cursor: pointer;
   }
-@media(min-width: 430px){
+@media(min-width: 800px){
 .Navbar-logo {
       display: inline-block
   }
@@ -117,13 +147,17 @@ body {
   }
 .Navbar-link_active {
     cursor: default;
-    color: #4c4c4c;
+    color: #686868;
   }
 .Feed {
   -webkit-column-count: 1;
           column-count: 1;
   -webkit-column-gap: 0;
           column-gap: 0;
+  -webkit-animation: slideUp 0.7s ease-in 0.2s;
+          animation: slideUp 0.7s ease-in 0.2s;
+  -webkit-animation-fill-mode: backwards;
+          animation-fill-mode: backwards;
 }
 @media(min-width: 430px){
 .Feed {
@@ -149,16 +183,25 @@ body {
   padding: 0.4rem;
   list-style: none;
   border: 1px solid #4c4c4c;
-  margin: 1px;
+  margin: 0.2rem;
   border-radius: 0.6rem;
-  background-color: #f5f5f5;
+  background-color: #686868;
+  -webkit-transition: background-color 0.3s ease-out;
+  transition: background-color 0.3s ease-out;
 }
+.Post:hover{
+    background-color: #f5f5f5;
+  }
 .Post img {
     width: 100%;
+    border-radius: 0.4rem;
+  }
+.Post-author {
+    margin-bottom: 0.7rem;
+    text-align: center;
   }
 .Post-content {
     border-radius: 0.6rem;
-    padding: 0.6rem;
   }
 .Error {
   text-align: center;

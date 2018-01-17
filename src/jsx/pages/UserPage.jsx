@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Feed from '../components/Feed.jsx';
+import User from '../components/User.jsx';
 
 export default class UserPage extends Component {
   constructor(props){
@@ -7,13 +8,12 @@ export default class UserPage extends Component {
   }
 
   render() {
-    const {params} = this.props.match;
+    const {match} = this.props;
     return (
       <div>
-        <h1>{`${params.username}`}</h1>
-        <img src='/placeholder-avatar.png'/>
+        <User match={match}/>
         <Feed
-          url={`/api/users/${params.username}/post`}
+          url={`/api/users/${match.params.username}/post`}
         />
       </div>
     );

@@ -7,12 +7,18 @@ export default class Feed extends Component {
     super(props);
     this.state = {
       posts: [],
-      error: false
+      error: false,
+      isModified: false
     }
   }
 
+  componentWillReceiveProps(nextProps){
+    this.props = nextProps;
+    this.componentWillMount();
+  }
+
   componentWillMount(){
-    fetch(this.props.url)
+    fetch(this.props.url, this.state.options)
       .then(res => {
         if (res.status > 400) return Promise.reject(res);
         return res.json()

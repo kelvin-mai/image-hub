@@ -53,6 +53,6 @@
   }
   &-link_active {
     cursor: default;
-    color: var(--main-dark);
+    color: var(--main-dark-light);
   }
 }

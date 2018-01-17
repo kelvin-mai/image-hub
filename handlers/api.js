@@ -33,6 +33,15 @@ module.exports.updateUser = (req, res) => {
     .catch(err => res.status(400).json(err));
 }
 
+module.exports.showFeed = (req, res) => {
+  db.User.findOne({username: req.params.username})
+    .then(user => {
+      db.Post.find({uid: {$in: user.follows}})
+        .populate('uid', {username: true})
+        .then(feed => res.status(200).json(feed));
+    }).catch(err => res.status(400).json(err));
+}
+
 module.exports.followUser = (req, res) => {
   db.User.findOne({username: req.params.username})
     .then(user => {

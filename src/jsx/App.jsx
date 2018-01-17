@@ -13,9 +13,11 @@ export default class App extends Component {
     super();
     this.state = {
       authenticated: false,
-      user: undefined
+      user: undefined,
+      toggle: true
     }
     this.handleAuth = this.handleAuth.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
   handleAuth(){
     if (localStorage.user) {
@@ -25,6 +27,9 @@ export default class App extends Component {
       this.setState({authenticated: false, user: null});
     }
   }
+  handleToggle(){
+    this.setState({toggle: !toggle});
+  }
   componentWillMount(){
     this.handleAuth();
   }
@@ -33,7 +38,10 @@ export default class App extends Component {
     return (
       <Router>
         <div>
-          <Nav user={this.state.user}/>
+          <Nav
+            user={this.state.user}
+            onToggle={this.handleToggle}
+          />
           <div className='container'>
             <Auth
               authenticated={this.state.authenticated}

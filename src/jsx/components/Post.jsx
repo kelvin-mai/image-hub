@@ -9,11 +9,10 @@ const Post = ({post, history}) => {
       <div className='Post-content'>
         {
           post.uid
-          ? <p>{post.uid.username}</p>
+          ? <p className='Post-author'>{post.uid.username}</p>
           : ''
         }
         <img src={post.image} />
-        <p>{post.caption}</p>
       </div>
     </li>
   );

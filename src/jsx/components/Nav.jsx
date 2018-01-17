@@ -3,9 +3,12 @@ import { NavLink } from 'react-router-dom';
 
 const Nav = ({user}) => (
   <div className='Navbar'>
-    <div className='container'>
+    <div className='Navbar-container'>
       <div className='Navbar-logo'>
         Image<span className='Navbar-logo-em'>Hub</span>
+      </div>
+      <div className='Navbar-search'>
+        <input type='text'/>
       </div>
       <div className='Navbar-text'>
         <NavLink

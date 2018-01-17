@@ -6,6 +6,7 @@ import Nav from './components/Nav.jsx';
 import HomePage from './pages/HomePage.jsx';
 import UserPage from './pages/UserPage.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
+import PostPage from './pages/PostPage.jsx';
 
 export default class App extends Component {
   constructor(){
@@ -47,6 +48,7 @@ export default class App extends Component {
             <Switch>
               <Route path='/' exact component={HomePage} />
               <Route path='/user/:username' component={UserPage} />
+              <Route path='/post/:pid' component={PostPage} />
               <Route path='*' component={ErrorPage} />
             </Switch>
           </div>

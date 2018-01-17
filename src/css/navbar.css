@@ -1,17 +1,41 @@
 .Navbar {
   background-color: black;
 
-  &-text {
-    text-align: right;
-    display: inline-block;
-    width: 50%;
+  &-container {
+    margin: auto;
+    padding: 1rem;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-direction: row;
   }
+
+  &-search {
+    & input[type=text] {
+      border-radius: 0.5rem;
+      border: 1px solid black;
+      padding: 0.2rem;
+      background-color: var(--main-dark);
+      transform: scaleX(1);
+      transition: all 0.3s ease-in;
+      color: var(--main-color);
+      font-size: 1rem;
+    }
+    & input[type=text]:focus {
+      outline: none;
+      transform: scaleX(1.1);
+    }
+  }
+
   &-logo {
     text-align: left;
-    display: inline-block;
-    width: 50%;
     font-size: 1.2rem;
     color: white;
+    display: none;
+    @media(--laptop){
+      display: inline-block;
+    }
 
     &-em {
       background-color: var(--main-color);

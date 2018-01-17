@@ -13,7 +13,10 @@ export default class Feed extends Component {
 
   componentWillMount(){
     fetch(this.props.url)
-      .then(res => res.json())
+      .then(res => {
+        if (res.status > 400) return Promise.reject(res);
+        return res.json()
+      })
       .then(posts => {
         this.setState({posts})
       }).catch(err => this.setState({error: true}));
@@ -21,9 +24,11 @@ export default class Feed extends Component {
 
   render(){
     if (this.state.error) return <Redirect to='/error' />
-    const posts = this.state.posts.map((post, i) =>
-          <Post key={i} post={post} />
-        );
+    const posts = this.state.posts.length > 0
+      ? this.state.posts.map((post, i) =>
+          <Post key={i} post={post} history={history}/>
+        )
+      : '';
     return (
       <ul className='Feed'>{posts}</ul>
     )

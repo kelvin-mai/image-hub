@@ -2,6 +2,8 @@ const db = require('../models');
 
 module.exports.allUsers = (req, res) => {
   db.User.find().sort({created_at: 'desc'})
+    .populate('follows', {username: true, _id: true})
+    .populate('followers', {username: true, _id: true})
     .populate('posts', {image: true, caption: true})
     .then(users => res.status(200).json(users))
     .catch(err => res.status(400).json(err));
@@ -23,6 +25,29 @@ module.exports.getUser = (req, res) => {
     }).then(user => res.status(200).json(user))
     .catch(err => res.status(400).json(err));
 };
+
+module.exports.updateUser = (req, res) => {
+  db.User.update({username: req.params.username},
+      {avatar: req.body.avatar}
+    ).then(user => res.status(200).json({message: 'User updated'}))
+    .catch(err => res.status(400).json(err));
+}
+
+module.exports.followUser = (req, res) => {
+  db.User.findOne({username: req.params.username})
+    .then(user => {
+      user.follows.push(req.params.followid);
+      user.save();
+      return user;
+    }).then(user => {
+      db.User.findById(req.params.followid)
+        .then(followed => {
+          followed.followers.push(user._id);
+          followed.save();
+          res.status(200).json({message: 'User followed'});
+        });
+    }).catch(err => res.status(400).json(err));
+}
 
 module.exports.getUserPosts = (req, res, next) => {
   db.User.findOne({username: req.params.username})

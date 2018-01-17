@@ -1,7 +1,7 @@
 .Feed {
   column-count: 1;
   column-gap: 0;
-  
+
   @media(--tablet){
     column-count: 2;
   }
@@ -16,6 +16,10 @@
   break-inside: avoid;
   padding: 0.4rem;
   list-style: none;
+  border: 1px solid var(--main-dark);
+  margin: 1px;
+  border-radius: 0.6rem;
+  background-color: #f5f5f5;
 
   & img {
     width: 100%;

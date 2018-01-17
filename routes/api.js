@@ -11,7 +11,11 @@ router.route('/users')
   .get(handle.allUsers);
 
 router.route('/users/:username')
-  .get(handle.getUser);
+  .get(handle.getUser)
+  .put(auth.loginRequired, auth.authorizationRequired, handle.updateUser);
+
+router.route('/users/:username/follow/:followid')
+  .put(auth.loginRequired, auth.authorizationRequired, handle.followUser);
 
 router.route('/users/:username/post')
   .get(handle.getUserPosts)

@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
-const Post = ({post}) => {
+const Post = ({post, history}) => {
   return (
-    <li className='Post'>
+    <li
+      className='Post'
+      onClick={() => history.push(`/post/${post._id}`)}>
       <div className='Post-content'>
-        <img src={post.image} />
-        <p>{post.caption}</p>
         {
           post.uid
           ? <p>{post.uid.username}</p>
           : ''
         }
+        <img src={post.image} />
+        <p>{post.caption}</p>
       </div>
     </li>
   );
 }
 
-export default Post;
+export default withRouter(Post);

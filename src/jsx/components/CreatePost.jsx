@@ -7,10 +7,15 @@ export default class CreatePost extends Component {
     this.state = {
       image: '',
       caption: '',
-      error: ''
+      error: '',
+      redirect: false,
+      user: {
+        username: ''
+      }
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
+    this.handleError = this.handleError.bind(this);
   }
 
   handleChange(e){
@@ -18,11 +23,8 @@ export default class CreatePost extends Component {
   }
   handleCreate(e){
     e.preventDefault();
-    this.setState({error: ''});
-    const {user} = this.props;
-    const {image, caption} = this.state;
+    const {image, caption, user} = this.state;
     const data = JSON.stringify({image, caption});
-    console.log(user);
     fetch(`/api/users/${user.username}/post`,{
       method: 'POST',
       body: data,
@@ -33,18 +35,32 @@ export default class CreatePost extends Component {
     }).then(res => res.json())
     .then(resp => {
       if (resp.message) return Promise.reject(resp);
-      this.forceUpdate();
+      this.setState({image: '', caption: '', error: '', redirect: true});
     }).catch(err => {
       this.setState({error: err.message});
     });
   }
 
+  handleError(e){
+    e.target.src = '/placeholder.png';
+  }
+
+  componentWillMount(){
+    this.setState({user: JSON.parse(localStorage.user), redirect: false});
+  }
+
   render(){
-    const {image, caption, error, redirect} = this.state;
+    const {image, caption, redirect, user} = this.state;
+    let error = '';
+    if (redirect) return <Redirect to={`/user/${user.username}`} />;
+    if (this.state.error) {
+      error = <p className='Error-message'>{this.state.error}</p>
+    }
 
     const createPost =
-      <form onSubmit={this.handleCreate}>
+      <form className='Form' onSubmit={this.handleCreate}>
         <input
+          className='Form-input'
           type='text'
           name='image'
           placeholder='image'
@@ -53,6 +69,7 @@ export default class CreatePost extends Component {
           onChange={this.handleChange}
         />
         <input
+          className='Form-input'
           type='text'
           name='caption'
           placeholder='caption'
@@ -60,12 +77,26 @@ export default class CreatePost extends Component {
           autoComplete='off'
           onChange={this.handleChange}
         />
-        <button type='submit'>Submit</button>
+        <div className='Form-buttons'>
+          <button className='Form-btn' type='submit'>Submit</button>
+        </div>
       </form>;
+
+    const preview =
+      <ul className='Preview'>
+        <li className='Post'>
+          <div className='Post-content'>
+            <p className='Post-author'>{user.username}</p>
+            <img src={image} onError={this.handleError}/>
+            <p className='Post-text'>{caption}</p>
+          </div>
+        </li>
+      </ul>
     return (
       <div>
-        {createPost}
+        {preview}
         {error}
+        {createPost}
       </div>
     );
   }

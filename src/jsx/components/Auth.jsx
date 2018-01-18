@@ -65,10 +65,10 @@ export default class Auth extends Component{
     const {username, password, error} = this.state;
     const {authenticated} = this.props;
     const login =
-      <div className='Auth'>
+      <div className='Form'>
         <form onSubmit={this.handleAuth}>
           <input
-            className='Auth-input'
+            className='Form-input'
             type='text'
             name='username'
             placeholder='username'
@@ -77,7 +77,7 @@ export default class Auth extends Component{
             onChange={this.handleChange}
           />
           <input
-            className='Auth-input'
+            className='Form-input'
             type='password'
             name='password'
             placeholder='password'
@@ -85,21 +85,22 @@ export default class Auth extends Component{
             autoComplete='off'
             onChange={this.handleChange}
           />
+          <input type="submit" style={{display:'none'}} />
         </form>
       </div>;
     const btn =
-    <button className='Auth-btn' onClick={this.handleAuth}>
+    <button className='Form-btn' onClick={this.handleAuth}>
       {!authenticated ? 'Login' : 'Logout'}
     </button>
 
     return (
       <div>
+        {error ? <p className='Error-message'>{error}</p> : ''}
         {!authenticated ? login : ''}
-        <div className='Auth-buttons'>
+        <div className='Form-buttons'>
           {btn}
-          <button className='Auth-btn' onClick={this.handleRegister}>Register</button>
+          <button className='Form-btn' onClick={this.handleRegister}>Register</button>
         </div>
-        {error}
       </div>
     );
   }

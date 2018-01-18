@@ -3,4 +3,5 @@
 @import './css/navbar';
 @import './css/post';
 @import './css/error';
-@import './css/auth';
+@import './css/form';
+@import './css/user';

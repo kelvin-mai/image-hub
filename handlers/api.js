@@ -19,6 +19,8 @@ module.exports.allPosts = (req, res) => {
 module.exports.getUser = (req, res) => {
   db.User.findOne({username: req.params.username})
     .populate('posts', {image: true, caption: true})
+    .populate('followers', {username: true})
+    .populate('follows', {username: true})
     .then(user => {
       if (user) return user;
       res.status(400).json({message: 'User does not exist'});

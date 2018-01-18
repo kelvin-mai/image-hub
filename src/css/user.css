@@ -1,0 +1,40 @@
+.User {
+  display: flex;
+  flex-direction: row;
+  height: 20vh;
+  margin: auto;
+  justify-content: center;
+
+  &-avatar {
+    & img {
+      height: 100%;
+      border-radius: 10rem;
+    }
+  }
+  &-info {
+    flex-direction: column;
+    margin-left: 2rem;
+    color: var(--main-gray);
+
+    &_name {
+      text-align: right;
+    }
+  }
+
+  &-btn {
+    display: inline-block;
+    background-color: var(--main-dark-light);
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    font-size: 1rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    margin: 1rem;
+    transition: all 0.3s ease-out;
+
+    &:hover {
+      background-color: var(--blue);
+      color: var(--main-dark-light);
+    }
+  }
+}

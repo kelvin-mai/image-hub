@@ -160,6 +160,7 @@ body {
           animation: slideUp 0.7s ease-in 0.2s;
   -webkit-animation-fill-mode: backwards;
           animation-fill-mode: backwards;
+  margin: 1rem auto;
 }
 @media(min-width: 430px){
 .Feed {
@@ -173,10 +174,29 @@ body {
             column-count: 3
 }
   }
+.Preview {
+  -webkit-column-count: 1;
+          column-count: 1;
+  -webkit-column-gap: 0;
+          column-gap: 0;
+  margin: 1rem auto;
+  width: 90%;
+}
+@media(min-width: 430px){
+.Preview {
+    width: 80%
+}
+  }
+@media(min-width: 800px){
+.Preview {
+    width: 60%
+}
+  }
 .Post {
   -webkit-column-break-inside: avoid;
           break-inside: avoid;
   padding: 0.4rem;
+  padding-bottom: 1rem;
   list-style: none;
   border: 1px solid #4c4c4c;
   margin: 0.2rem;
@@ -197,6 +217,10 @@ body {
     text-align: center;
     color: #f5f5f5;
   }
+.Post-text {
+    color: #f5f5f5;
+    padding-left: 1rem;
+  }
 .Post-content {
     border-radius: 0.6rem;
   }
@@ -206,11 +230,18 @@ body {
   font-size: 2em;
   color: #FFA500;
 }
-.Auth {
+.Error-message {
+    background-color: #f44336;
+    color: #f5f5f5;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+.Form {
   margin: 5rem auto 1rem auto;
   width: 50%;
 }
-.Auth-btn {
+.Form-btn {
     display: inline-block;
     background-color: #686868;
     color: #FFA500;
@@ -222,11 +253,11 @@ body {
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
   }
-.Auth-btn:hover {
+.Form-btn:hover {
       background-color: #FFA500;
       color: #686868;
     }
-.Auth-input {
+.Form-input {
     display: block;
     width: 100%;
     font-size: 1rem;
@@ -235,23 +266,23 @@ body {
     background-color: #f5f5f5;
     margin-bottom: 0.5rem;
   }
-.Auth-input::-webkit-input-placeholder {
+.Form-input::-webkit-input-placeholder {
       text-align: center;
       color: #686868;
     }
-.Auth-input:-ms-input-placeholder {
+.Form-input:-ms-input-placeholder {
       text-align: center;
       color: #686868;
     }
-.Auth-input::-ms-input-placeholder {
+.Form-input::-ms-input-placeholder {
       text-align: center;
       color: #686868;
     }
-.Auth-input::placeholder {
+.Form-input::placeholder {
       text-align: center;
       color: #686868;
     }
-.Auth-buttons {
+.Form-buttons {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -265,4 +296,51 @@ body {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    -webkit-transform: translateX(1.5rem);
+            transform: translateX(1.5rem);
   }
+.User {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 20vh;
+  margin: auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.User-avatar img {
+      height: 100%;
+      border-radius: 10rem;
+    }
+.User-info {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-left: 2rem;
+    color: #f5f5f5;
+  }
+.User-info_name {
+      text-align: right;
+    }
+.User-btn {
+    display: inline-block;
+    background-color: #686868;
+    color: #90caf9;
+    border: 1px solid #90caf9;
+    font-size: 1rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    margin: 1rem;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+  }
+.User-btn:hover {
+      background-color: #90caf9;
+      color: #686868;
+    }

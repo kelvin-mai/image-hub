@@ -17,7 +17,7 @@ export default class User extends Component {
     this.follow = this.follow.bind(this);
   }
   follow(){
-    console.log('clicked');
+    this.setState({followed: true})
     if (localStorage.user){
       const currentUser = JSON.parse(localStorage.user);
       fetch(`/api/users/${currentUser.username}/follow/${this.state.user._id}`,{
@@ -53,15 +53,20 @@ export default class User extends Component {
   render() {
     if (this.state.error) return <Redirect to='/error' />
     const {user, me} = this.state;
+    let followed = false;
     return (
       <div className='User'>
-        <h1>{user.username}</h1>
-        <img src={user.avatar} />
-        <p>Followers: {user.followers.length}</p>
-        <p>Follows: {user.follows.length}</p>
-        {
-          !me ? <button onClick={this.follow}>Follow</button> : ''
-        }
+        <div className='User-avatar'>
+          <img src={user.avatar} />
+        </div>
+        <div className='User-info'>
+          <h1 className='User-info_name'>{user.username}</h1>
+          <p>Followers: {user.followers.length}</p>
+          <p>Follows: {user.follows.length}</p>
+          {
+            !me || !followed ? <button className='User-btn' onClick={this.follow}>Follow</button> : ''
+          }
+        </div>
       </div>
     );
   }

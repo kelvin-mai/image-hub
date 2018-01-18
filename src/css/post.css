@@ -3,6 +3,7 @@
   column-gap: 0;
   animation: slideUp 0.7s ease-in 0.2s;
   animation-fill-mode: backwards;
+  margin: 1rem auto;
 
   @media(--tablet){
     column-count: 2;
@@ -11,9 +12,25 @@
     column-count: 3;
   }
 }
+
+.Preview {
+  column-count: 1;
+  column-gap: 0;
+  margin: 1rem auto;
+  width: 90%;
+
+  @media(--tablet){
+    width: 80%;
+  }
+  @media(--laptop){
+    width: 60%;
+  }
+}
+
 .Post {
   break-inside: avoid;
   padding: 0.4rem;
+  padding-bottom: 1rem;
   list-style: none;
   border: 1px solid var(--main-dark);
   margin: 0.2rem;
@@ -33,6 +50,10 @@
     margin-bottom: 0.7rem;
     text-align: center;
     color: var(--main-gray);
+  }
+  &-text {
+    color: var(--main-gray);
+    padding-left: 1rem;
   }
 
   &-content {

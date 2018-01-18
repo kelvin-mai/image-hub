@@ -7,12 +7,13 @@ import UserPage from './pages/UserPage.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
 import PostPage from './pages/PostPage.jsx';
 import AuthPage from './pages/AuthPage.jsx';
+import CreatePage from './pages/CreatePage.jsx';
 
 export default class App extends Component {
   constructor(){
     super();
   }
-  
+
   render() {
     return (
       <Router>
@@ -21,6 +22,7 @@ export default class App extends Component {
           <div className='container'>
             <Switch>
               <Route path='/' exact component={HomePage} />
+              <Route path='/user/:username/post' component={CreatePage} />
               <Route path='/user/:username' component={UserPage} />
               <Route path='/post/:pid' component={PostPage} />
               <Route path='/auth' component={AuthPage} />

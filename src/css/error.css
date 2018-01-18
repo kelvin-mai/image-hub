@@ -3,4 +3,12 @@
   margin-top: 4rem;
   font-size: 2em;
   color: var(--main-color);
+
+  &-message {
+    background-color: var(--danger);
+    color: var(--main-gray);
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
 }

@@ -9,6 +9,8 @@
   --main-dark: #4c4c4c;
   --main-dark-light: #686868;
   --main-gray: #f5f5f5;
+  --danger: #f44336;
+  --blue: #90caf9;
 }
 
 * {

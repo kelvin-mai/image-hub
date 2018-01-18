@@ -1,4 +1,4 @@
-.Auth {
+.Form {
   margin: 5rem auto 1rem auto;
   width: 50%;
 
@@ -38,5 +38,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    transform: translateX(1.5rem);
   }
 }

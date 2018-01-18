@@ -65,34 +65,40 @@ export default class Auth extends Component{
     const {username, password, error} = this.state;
     const {authenticated} = this.props;
     const login =
-      <form onSubmit={this.handleAuth}>
-        <input
-          type='text'
-          name='username'
-          placeholder='username'
-          value={username}
-          autoComplete='off'
-          onChange={this.handleChange}
-        />
-        <input
-          type='password'
-          name='password'
-          placeholder='password'
-          value={password}
-          autoComplete='off'
-          onChange={this.handleChange}
-        />
-        <button type='submit'>Log in</button>
-      </form>;
-    const logout = <button onClick={this.handleAuth}>Log out</button>
+      <div className='Auth'>
+        <form onSubmit={this.handleAuth}>
+          <input
+            className='Auth-input'
+            type='text'
+            name='username'
+            placeholder='username'
+            value={username}
+            autoComplete='off'
+            onChange={this.handleChange}
+          />
+          <input
+            className='Auth-input'
+            type='password'
+            name='password'
+            placeholder='password'
+            value={password}
+            autoComplete='off'
+            onChange={this.handleChange}
+          />
+        </form>
+      </div>;
+    const btn =
+    <button className='Auth-btn' onClick={this.handleAuth}>
+      {!authenticated ? 'Login' : 'Logout'}
+    </button>
 
     return (
       <div>
-        {!authenticated ? login : logout}
-        {!authenticated
-          ? <button onClick={this.handleRegister}>Register</button>
-          : ''
-        }
+        {!authenticated ? login : ''}
+        <div className='Auth-buttons'>
+          {btn}
+          <button className='Auth-btn' onClick={this.handleRegister}>Register</button>
+        </div>
         {error}
       </div>
     );

@@ -16,6 +16,10 @@
   font-family: 'Roboto', sans-serif;
 }
 
+*:focus {
+  outline: none;
+}
+
 body {
   background-color: var(--main-dark);
 }

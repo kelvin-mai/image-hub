@@ -4,6 +4,9 @@
   margin: 0;
   font-family: 'Roboto', sans-serif;
 }
+*:focus {
+  outline: none;
+}
 body {
   background-color: #4c4c4c;
 }
@@ -192,6 +195,7 @@ body {
 .Post-author {
     margin-bottom: 0.7rem;
     text-align: center;
+    color: #f5f5f5;
   }
 .Post-content {
     border-radius: 0.6rem;
@@ -202,3 +206,63 @@ body {
   font-size: 2em;
   color: #FFA500;
 }
+.Auth {
+  margin: 5rem auto 1rem auto;
+  width: 50%;
+}
+.Auth-btn {
+    display: inline-block;
+    background-color: #686868;
+    color: #FFA500;
+    border: 1px solid #FFA500;
+    font-size: 1rem;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    margin: 1rem;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+  }
+.Auth-btn:hover {
+      background-color: #FFA500;
+      color: #686868;
+    }
+.Auth-input {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.3rem 1rem;
+    color: #4c4c4c;
+    background-color: #f5f5f5;
+    margin-bottom: 0.5rem;
+  }
+.Auth-input::-webkit-input-placeholder {
+      text-align: center;
+      color: #686868;
+    }
+.Auth-input:-ms-input-placeholder {
+      text-align: center;
+      color: #686868;
+    }
+.Auth-input::-ms-input-placeholder {
+      text-align: center;
+      color: #686868;
+    }
+.Auth-input::placeholder {
+      text-align: center;
+      color: #686868;
+    }
+.Auth-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }

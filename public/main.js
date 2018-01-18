@@ -24341,45 +24341,51 @@ var Auth = function (_Component) {
       var authenticated = this.props.authenticated;
 
       var login = _react2.default.createElement(
-        'form',
-        { onSubmit: this.handleAuth },
-        _react2.default.createElement('input', {
-          type: 'text',
-          name: 'username',
-          placeholder: 'username',
-          value: username,
-          autoComplete: 'off',
-          onChange: this.handleChange
-        }),
-        _react2.default.createElement('input', {
-          type: 'password',
-          name: 'password',
-          placeholder: 'password',
-          value: password,
-          autoComplete: 'off',
-          onChange: this.handleChange
-        }),
+        'div',
+        { className: 'Auth' },
         _react2.default.createElement(
-          'button',
-          { type: 'submit' },
-          'Log in'
+          'form',
+          { onSubmit: this.handleAuth },
+          _react2.default.createElement('input', {
+            className: 'Auth-input',
+            type: 'text',
+            name: 'username',
+            placeholder: 'username',
+            value: username,
+            autoComplete: 'off',
+            onChange: this.handleChange
+          }),
+          _react2.default.createElement('input', {
+            className: 'Auth-input',
+            type: 'password',
+            name: 'password',
+            placeholder: 'password',
+            value: password,
+            autoComplete: 'off',
+            onChange: this.handleChange
+          })
         )
       );
-      var logout = _react2.default.createElement(
+      var btn = _react2.default.createElement(
         'button',
-        { onClick: this.handleAuth },
-        'Log out'
+        { className: 'Auth-btn', onClick: this.handleAuth },
+        !authenticated ? 'Login' : 'Logout'
       );
 
       return _react2.default.createElement(
         'div',
         null,
-        !authenticated ? login : logout,
-        !authenticated ? _react2.default.createElement(
-          'button',
-          { onClick: this.handleRegister },
-          'Register'
-        ) : '',
+        !authenticated ? login : '',
+        _react2.default.createElement(
+          'div',
+          { className: 'Auth-buttons' },
+          btn,
+          _react2.default.createElement(
+            'button',
+            { className: 'Auth-btn', onClick: this.handleRegister },
+            'Register'
+          )
+        ),
         error
       );
     }

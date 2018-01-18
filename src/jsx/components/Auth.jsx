@@ -10,6 +10,7 @@ export default class Auth extends Component{
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleAuth = this.handleAuth.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
   }
 
   handleChange(e){
@@ -41,6 +42,25 @@ export default class Auth extends Component{
     }
   }
 
+  handleRegister(){
+    this.setState({error: ''});
+    const {username, password} = this.state;
+    const data = JSON.stringify({username, password});
+    fetch('/auth/register', {
+      method: 'POST',
+      body: data,
+      headers: new Headers({'Content-Type':'application/json'})
+    }).then(res => res.json())
+    .then(user => {
+      if (user.message) return Promise.reject(user);
+      localStorage.user = JSON.stringify(user);
+      this.props.onAuth();
+    })
+    .catch(err => {
+      this.setState({error: err.message});
+    });
+  }
+
   render(){
     const {username, password, error} = this.state;
     const {authenticated} = this.props;
@@ -69,6 +89,10 @@ export default class Auth extends Component{
     return (
       <div>
         {!authenticated ? login : logout}
+        {!authenticated
+          ? <button onClick={this.handleRegister}>Register</button>
+          : ''
+        }
         {error}
       </div>
     );

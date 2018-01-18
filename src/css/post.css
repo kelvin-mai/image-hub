@@ -10,9 +10,6 @@
   @media(--laptop){
     column-count: 3;
   }
-  @media(--desktop){
-    column-count: 4;
-  }
 }
 .Post {
   break-inside: avoid;

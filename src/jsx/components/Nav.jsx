@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Nav = ({user}) => (
+const Nav = () => {
+  let user = undefined;
+  if (localStorage.user){
+    user = JSON.parse(localStorage.user);
+  }
+
+  return (
   <div className='Navbar'>
     <div className='Navbar-container'>
       <NavLink to='/' activeStyle={{cursor: 'default'}}>
@@ -28,9 +34,14 @@ const Nav = ({user}) => (
             >{user.username}</NavLink>
           : ''
         }
+        <NavLink
+          className='Navbar-link'
+          activeClassName='Navbar-link_active'
+          to={'/auth'}
+        >{user ? 'Logout' : 'Login'}</NavLink>
       </div>
     </div>
   </div>
-);
+);}
 
 export default Nav;

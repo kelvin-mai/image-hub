@@ -37,6 +37,7 @@ module.exports.showFeed = (req, res) => {
   db.User.findOne({username: req.params.username})
     .then(user => {
       db.Post.find({uid: {$in: user.follows}})
+        .sort({created_at: 'desc'})
         .populate('uid', {username: true})
         .then(feed => res.status(200).json(feed));
     }).catch(err => res.status(400).json(err));

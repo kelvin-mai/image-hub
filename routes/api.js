@@ -15,7 +15,7 @@ router.route('/users/:username')
   .put(auth.loginRequired, auth.authorizationRequired, handle.updateUser);
 
 router.route('/users/:username/feed')
-  .get(auth.loginRequired, auth.authorizationRequired, handle.showFeed);
+  .get(handle.showFeed);
 
 router.route('/users/:username/follow/:followid')
   .put(auth.loginRequired, auth.authorizationRequired, handle.followUser);

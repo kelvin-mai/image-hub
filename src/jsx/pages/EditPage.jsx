@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import CreatePost from '../components/CreatePost.jsx';
+import EditPost from '../components/EditPost.jsx';
 
 const CreatePage = () => (
   <div>
-    <h1>Make A Post</h1>
-    <CreatePost />
+    <h1 className='title'>Make A Post</h1>
+    <EditPost />
   </div>
 );
 

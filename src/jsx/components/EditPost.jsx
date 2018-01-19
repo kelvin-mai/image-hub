@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-export default class CreatePost extends Component {
+export default class EditPost extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -68,8 +68,8 @@ export default class CreatePost extends Component {
           autoComplete='off'
           onChange={this.handleChange}
         />
-        <input
-          className='Form-input'
+        <textarea
+          className='Form-input Form-input_caption'
           type='text'
           name='caption'
           placeholder='caption'
@@ -77,26 +77,26 @@ export default class CreatePost extends Component {
           autoComplete='off'
           onChange={this.handleChange}
         />
-        <div className='Form-buttons'>
-          <button className='Form-btn' type='submit'>Submit</button>
+        <div className='Button-container'>
+          <button className='Button Button_orange' type='submit'>Submit</button>
         </div>
       </form>;
 
     const preview =
       <ul className='Preview'>
-        <li className='Post'>
+        <li className='Post Post_details'>
           <div className='Post-content'>
             <p className='Post-author'>{user.username}</p>
             <img src={image} onError={this.handleError}/>
             <p className='Post-text'>{caption}</p>
           </div>
         </li>
-      </ul>
+      </ul>;
     return (
       <div>
+        {createPost}
         {preview}
         {error}
-        {createPost}
       </div>
     );
   }

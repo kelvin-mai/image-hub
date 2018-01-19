@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Feed from '../components/Feed.jsx';
-import CreatePost from '../components/CreatePost.jsx';
 
 export default class HomePage extends Component {
   render(){
@@ -11,9 +10,9 @@ export default class HomePage extends Component {
       user = JSON.parse(localStorage.user);
       url = `/api/users/${user.username}/feed`;
       button =
-      <div className='Form-buttons'>
+      <div className='Button-container'>
         <button
-          className='Form-btn'
+          className='Button Button_orange'
           onClick={() => this.props.history.push(`/user/${user.username}/post`)}>
           Make Post
         </button>

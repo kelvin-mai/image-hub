@@ -38,3 +38,8 @@ body {
     width: 80%;
   }
 }
+
+.title {
+  text-align: center;
+  color: var(--main-gray);
+}

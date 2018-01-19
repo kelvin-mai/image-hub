@@ -24,7 +24,16 @@ export default class UserPage extends Component {
     let display = '';
     if (this.state.error) return <Redirect to='/error' />
     if (post){
-      display = <img src={post.image} />;
+      display =
+        <ul className='Preview'>
+         <li className='Post Post_details'>
+           <div className='Post-content'>
+             <p className='Post-author'>{post.uid.username}</p>
+             <img src={post.image}/>
+             <p className='Post-text'>{post.caption}</p>
+           </div>
+         </li>
+       </ul>;
     }
     return (
       <div>
@@ -33,3 +42,14 @@ export default class UserPage extends Component {
     );
   }
 }
+
+// const preview =
+//   <ul className='Preview'>
+//     <li className='Post Post_details'>
+//       <div className='Post-content'>
+//         <p className='Post-author'>{user.username}</p>
+//         <img src={image} onError={this.handleError}/>
+//         <p className='Post-text'>{caption}</p>
+//       </div>
+//     </li>
+//   </ul>;

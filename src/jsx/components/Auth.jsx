@@ -89,7 +89,7 @@ export default class Auth extends Component{
         </form>
       </div>;
     const btn =
-    <button className='Form-btn' onClick={this.handleAuth}>
+    <button className='Button Button_orange' onClick={this.handleAuth}>
       {!authenticated ? 'Login' : 'Logout'}
     </button>
 
@@ -97,9 +97,9 @@ export default class Auth extends Component{
       <div>
         {error ? <p className='Error-message'>{error}</p> : ''}
         {!authenticated ? login : ''}
-        <div className='Form-buttons'>
+        <div className='Button-container'>
           {btn}
-          <button className='Form-btn' onClick={this.handleRegister}>Register</button>
+          <button className='Button Button_orange' onClick={this.handleRegister}>Register</button>
         </div>
       </div>
     );

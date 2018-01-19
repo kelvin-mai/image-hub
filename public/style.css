@@ -25,6 +25,10 @@ body {
     width: 80%
 }
   }
+.title {
+  text-align: center;
+  color: #f5f5f5;
+}
 @-webkit-keyframes spin {
   0% {
     -webkit-transform: rotate(0deg) scale(1);
@@ -219,7 +223,7 @@ body {
   }
 .Post-text {
     color: #f5f5f5;
-    padding-left: 1rem;
+    padding: 1rem;
   }
 .Post-content {
     border-radius: 0.6rem;
@@ -241,22 +245,6 @@ body {
   margin: 5rem auto 1rem auto;
   width: 50%;
 }
-.Form-btn {
-    display: inline-block;
-    background-color: #686868;
-    color: #FFA500;
-    border: 1px solid #FFA500;
-    font-size: 1rem;
-    padding: 0.3rem 1rem;
-    border-radius: 1rem;
-    margin: 1rem;
-    -webkit-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
-  }
-.Form-btn:hover {
-      background-color: #FFA500;
-      color: #686868;
-    }
 .Form-input {
     display: block;
     width: 100%;
@@ -267,38 +255,29 @@ body {
     margin-bottom: 0.5rem;
   }
 .Form-input::-webkit-input-placeholder {
+      padding-top: 0.3rem;
       text-align: center;
       color: #686868;
     }
 .Form-input:-ms-input-placeholder {
+      padding-top: 0.3rem;
       text-align: center;
       color: #686868;
     }
 .Form-input::-ms-input-placeholder {
+      padding-top: 0.3rem;
       text-align: center;
       color: #686868;
     }
 .Form-input::placeholder {
+      padding-top: 0.3rem;
       text-align: center;
       color: #686868;
     }
-.Form-buttons {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-transform: translateX(1.5rem);
-            transform: translateX(1.5rem);
-  }
+.Form-input_caption {
+      height: 5rem;
+      padding-top: 0.3rem;
+    }
 .User {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -328,19 +307,50 @@ body {
 .User-info_name {
       text-align: right;
     }
-.User-btn {
-    display: inline-block;
+.Button {
+  display: inline-block;
+  background-color: #686868;
+  color: #FFA500;
+  border: 1px solid #FFA500;
+  font-size: 1rem;
+  padding: 0.3rem 1rem;
+  border-radius: 1rem;
+  margin: 1rem;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.Button-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-transform: translateX(1.5rem);
+            transform: translateX(1.5rem);
+  }
+.Button_orange {
+    background-color: #686868;
+    color: #FFA500;
+    border: 1px solid #FFA500;
+  }
+.Button_orange:hover {
+      background-color: #FFA500;
+      color: #686868;
+    }
+.Button_blue {
     background-color: #686868;
     color: #90caf9;
     border: 1px solid #90caf9;
-    font-size: 1rem;
-    padding: 0.3rem 1rem;
-    border-radius: 1rem;
-    margin: 1rem;
-    -webkit-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
   }
-.User-btn:hover {
+.Button_blue:hover {
       background-color: #90caf9;
       color: #686868;
     }

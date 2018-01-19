@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import CreatePost from './components/CreatePost.jsx';
 import Nav from './components/Nav.jsx';
 import HomePage from './pages/HomePage.jsx';
 import UserPage from './pages/UserPage.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
 import PostPage from './pages/PostPage.jsx';
 import AuthPage from './pages/AuthPage.jsx';
-import CreatePage from './pages/CreatePage.jsx';
+import EditPage from './pages/EditPage.jsx';
 
 export default class App extends Component {
   constructor(){
@@ -21,11 +20,11 @@ export default class App extends Component {
           <Nav />
           <div className='container'>
             <Switch>
-              <Route path='/' exact component={HomePage} />
-              <Route path='/user/:username/post' component={CreatePage} />
-              <Route path='/user/:username' component={UserPage} />
-              <Route path='/post/:pid' component={PostPage} />
-              <Route path='/auth' component={AuthPage} />
+              <Route exact path='/' component={HomePage} />
+              <Route exact path='/user/:username/post' component={EditPage} />
+              <Route exact path='/user/:username' component={UserPage} />
+              <Route exact path='/post/:pid' component={PostPage} />
+              <Route exact path='/auth' component={AuthPage} />
               <Route path='*' component={ErrorPage} />
             </Switch>
           </div>

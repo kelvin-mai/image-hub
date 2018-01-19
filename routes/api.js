@@ -4,7 +4,7 @@ handle = require('../handlers/api');
 
 router.route('/')
   .get((req, res) => {
-     require('../models').Post.find().remove().exec().then(() => res.send('cleared'));
+     require('../models').User.find().remove().exec().then(() => res.send('cleared'));
    });
 
 router.route('/users')

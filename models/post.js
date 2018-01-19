@@ -18,10 +18,7 @@ const postSchema = new mongoose.Schema({
   created_at: {
     type: Date,
     default: Date.now
-  },
-  tags: [{
-    type: String
-  }]
+  }
 });
 
 postSchema.pre('remove', function(next){

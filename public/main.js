@@ -23810,6 +23810,8 @@ var _reactRouterDom = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -23833,9 +23835,14 @@ var User = function (_Component) {
       },
       followed: false,
       me: false,
-      error: false
+      error: false,
+      toggle: false,
+      avatar: ''
     };
     _this.follow = _this.follow.bind(_this);
+    _this.updateUser = _this.updateUser.bind(_this);
+    _this.toggleUpdate = _this.toggleUpdate.bind(_this);
+    _this.handleChange = _this.handleChange.bind(_this);
     return _this;
   }
 
@@ -23862,6 +23869,40 @@ var User = function (_Component) {
       }
     }
   }, {
+    key: 'handleChange',
+    value: function handleChange(e) {
+      this.setState(_defineProperty({}, e.target.name, e.target.value));
+    }
+  }, {
+    key: 'updateUser',
+    value: function updateUser(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      var user = this.state.user;
+
+      user.avatar = this.state.avatar;
+      var data = JSON.stringify({ avatar: user.avatar });
+      console.log(data);
+      this.setState({ user: user });
+      var currentUser = JSON.parse(localStorage.user);
+      fetch('/api/users/' + currentUser.username, {
+        method: 'PUT',
+        body: data,
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + currentUser.token
+        })
+      }).catch(function (err) {
+        return _this3.setState({ error: true });
+      });
+    }
+  }, {
+    key: 'toggleUpdate',
+    value: function toggleUpdate() {
+      this.setState({ toggle: !this.state.toggle });
+    }
+  }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       this.props = nextProps;
@@ -23870,7 +23911,7 @@ var User = function (_Component) {
   }, {
     key: 'componentWillMount',
     value: function componentWillMount() {
-      var _this3 = this;
+      var _this4 = this;
 
       var currentUser = void 0,
           me = void 0,
@@ -23890,9 +23931,9 @@ var User = function (_Component) {
         }).length > 0) {
           followed = true;
         }
-        _this3.setState({ user: user, me: me, followed: followed });
+        _this4.setState({ user: user, me: me, followed: followed });
       }).catch(function (err) {
-        return _this3.setState({ error: true });
+        return _this4.setState({ error: true });
       });
     }
   }, {
@@ -23902,7 +23943,10 @@ var User = function (_Component) {
       var _state = this.state,
           user = _state.user,
           me = _state.me,
-          followed = _state.followed;
+          followed = _state.followed,
+          toggle = _state.toggle,
+          avatar = _state.avatar;
+
 
       return _react2.default.createElement(
         'div',
@@ -23913,8 +23957,23 @@ var User = function (_Component) {
           _react2.default.createElement('img', { src: user.avatar }),
           me ? _react2.default.createElement(
             'button',
-            { className: 'Button Button_blue' },
+            {
+              className: 'Button Button_blue',
+              onClick: this.toggleUpdate },
             'Change avatar'
+          ) : '',
+          toggle ? _react2.default.createElement(
+            'form',
+            { onSubmit: this.updateUser },
+            _react2.default.createElement('input', {
+              type: 'text',
+              name: 'avatar',
+              placeholder: 'avatar',
+              value: avatar,
+              autoComplete: 'off',
+              onChange: this.handleChange
+            }),
+            _react2.default.createElement('input', { type: 'submit', style: { display: 'none' } })
           ) : ''
         ),
         _react2.default.createElement(
@@ -24475,6 +24534,7 @@ var EditPost = function (_Component) {
           user = _state.user;
 
       var data = JSON.stringify({ image: image, caption: caption });
+      console.log(data);
       fetch('/api/users/' + user.username + '/post', {
         method: 'POST',
         body: data,

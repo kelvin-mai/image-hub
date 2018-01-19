@@ -25,6 +25,7 @@ export default class EditPost extends Component {
     e.preventDefault();
     const {image, caption, user} = this.state;
     const data = JSON.stringify({image, caption});
+    console.log(data);
     fetch(`/api/users/${user.username}/post`,{
       method: 'POST',
       body: data,

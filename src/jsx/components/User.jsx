@@ -13,9 +13,14 @@ export default class User extends Component {
       },
       followed: false,
       me: false,
-      error: false
+      error: false,
+      toggle: false,
+      avatar: ''
     }
     this.follow = this.follow.bind(this);
+    this.updateUser = this.updateUser.bind(this);
+    this.toggleUpdate = this.toggleUpdate.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   follow(){
     this.setState({followed: true})
@@ -31,6 +36,30 @@ export default class User extends Component {
       }).then(data => this.componentWillMount())
       .catch(err => this.setState({error: true}));
     }
+  }
+  handleChange(e){
+    this.setState({[e.target.name]: e.target.value});
+  }
+  updateUser(e){
+    e.preventDefault();
+    const {user} = this.state;
+    user.avatar = this.state.avatar;
+    const data = JSON.stringify({avatar: user.avatar});
+    console.log(data);
+    this.setState({user});
+    const currentUser = JSON.parse(localStorage.user);
+    fetch(`/api/users/${currentUser.username}`,{
+      method: 'PUT',
+      body: data,
+      headers: new Headers({
+        'Content-Type':'application/json',
+        'Authorization':`Bearer ${currentUser.token}`
+      })
+    }).catch(err => this.setState({error: true}));
+
+  }
+  toggleUpdate(){
+    this.setState({toggle: !this.state.toggle});
   }
 
   componentWillReceiveProps(nextProps) {
@@ -60,12 +89,30 @@ export default class User extends Component {
 
   render() {
     if (this.state.error) return <Redirect to='/error' />
-    const {user, me, followed} = this.state;
+    const {user, me, followed, toggle, avatar} = this.state;
+
     return (
       <div className='User'>
         <div className='User-avatar'>
           <img src={user.avatar} />
-          { me ? <button className='Button Button_blue'>Change avatar</button> : '' }
+          { me
+            ? <button
+              className='Button Button_blue'
+              onClick={this.toggleUpdate}>Change avatar</button>
+            : '' }
+          { toggle
+            ? <form onSubmit={this.updateUser}>
+                <input
+                  type='text'
+                  name='avatar'
+                  placeholder='avatar'
+                  value={avatar}
+                  autoComplete='off'
+                  onChange={this.handleChange}
+                />
+                <input type='submit' style={{display:'none'}} />
+              </form>
+            : ''}
         </div>
         <div className='User-info'>
           <h1 className='User-info_name'>{user.username}</h1>

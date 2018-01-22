@@ -1,4 +1,4 @@
-# Instagram Clone
+# Image Hub
 
 A Instagram-like web application made in the MERN stack
 

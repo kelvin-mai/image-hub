@@ -2,6 +2,8 @@
 
 A Instagram-like web application made in the MERN stack
 
+![Screenshot](/media/screenshot.png)
+
 <!-- ### Features -->
 
 <!-- ### Installing -->
